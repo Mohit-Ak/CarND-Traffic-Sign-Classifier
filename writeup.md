@@ -165,32 +165,59 @@ Custom Modified Architecture:
 - Tried to implement Hypertuning. An approach to autmatically find the best set of parameters.
 - Played around with Tensor board and TensorFlow summaries for visualization.
 - Played around with a capsule network solution for image classification.
+- Classification using pretrained inception model by retraining the last few layers.
 
 #### FINAL ACCURACY
+| Dataset        	|     Accuracy        					| 
+|:---------------------:|:---------------------------------------------:| 
+| Validation         			| 94.2%   									| 
+| Test    				|92.7% 										|
+
+
+Note - A little higher validation set accuracy was found at Epoch 84 but gave the same test set accuracy.
 Accuracy | Validation Dataset
 Epoch : 84
 Accuracy : 94.6%
-Epoch : 100
-Accuracy : 94.1%
-Accuracy | Testing Dataset
-Accuracy : 92.7% 
+
 
 ### Model on Custom Images
+- The model was experimented on 5 custom images.
+- The same preprocessing steps of Normalization and Grayscaling were applied.
+- An additional step of resizing was applied.
+```
+Custom Images and Shapes
+img_i: 1.png
+image.shape  (32, 32, 4)
 
-#### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
+img_i: 2.png
+image.shape  (32, 32, 4)
 
-Here are the results of the prediction:
+img_i: 3.png
+image.shape  (32, 32, 4)
 
-| Image			        |     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+img_i: 4.png
+image.shape  (32, 32, 4)
 
+img_i: 5.png
+image.shape  (32, 32, 4)
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+Gray scaled image array shape - (5, 32, 32, 1)
+```
+![alt text][image8]
+
+## Prediction for custom images
+- The tf.nn.top_k was used fpr predicting the top 3 guesses for each image.
+- Please find the proability of each guess mentioned on the image label
+
+![alt text][image8]
+
+### RESULTS FOR CUSTOM IMAGES
+- The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%.
+### Reason for misclassification of the "Stop" sign image
+- The model needs additional training data for the "Stop" image.
+- The Stop sign was the third guess instead of being the first.
+- The model failed to recognize a zoomed inrepresntation and therefore the new samples must be subjected to zoom augmentation.
+
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
@@ -200,11 +227,11 @@ For the first image, the model is relatively sure that this is a stop sign (prob
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+| 99.8         			| General Caution   									| 
+| 99.9     				| Speed Limit 30 										|
+| 99.8					| Keep Right											|
+| 99.9	      			| Yield					 				|
+| 98				    | Stop (Misclassified)      							|
 
 
 For the second image ... 
