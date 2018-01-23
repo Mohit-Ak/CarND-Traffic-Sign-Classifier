@@ -1,4 +1,4 @@
-# **Traffic Sign Recognition | Writeup** 
+# **Traffic Sign Recognition | Writeup | Mohit Arvind Khakharia** 
 ---
 
 The goals / steps of this project are the following:
@@ -37,33 +37,28 @@ The goals / steps of this project are the following:
 ### Data Set Summary & Exploration
 
 ### Before Augmentation
-* The size of training set is ?
+* Size and shape of the training set
 ```
 Size - 34799 Samples
-Shape 
-X_train shape: (34799, 32, 32, 3)
-y_train shape: (34799,)
+Shape - 34799 x 32 x 32 x 3
+
  ```
-* The size of the validation set is ?
+* Size and shape of the Vlidation set
 ```
 Size - 4410 Samples
-Shape
-X_valid shape: (4410, 32, 32, 3)
-y_valid shape: (4410,)
+Shape - 4410 x 32 x 32 x 3
 ```
-* The size of test set is ?
+* Size and shape of the test set
 ```
 Size - 12630 Samples
-Shape
-X_test shape: (12630, 32, 32, 3)
-y_test shape: (12630,)
+Shape - 126302 x 32 x 3
 ```
 
-* The shape of a traffic sign image is ?
+* Shape of a Traffic Sign image
 ``` 
 32 x 32
 ```
-* The number of unique classes/labels in the data set is ?
+* Unique Classes/Labels in the data set
 ```
 43
 ```
@@ -84,6 +79,14 @@ As mentioned in the lecutre, it is always a good practice to augment the data be
 Here is an exploratory visualization of the data set
 
 ![alt text][image9]
+
+### Statistical Analysis of the Class frequency
+- Tells us if we have enough samples of all the classes
+- Tells us if our training data is not biased
+- Tells us that if we cover all the classes in the Validation set
+- Tells us if we test all the classes in the Test set
+
+![alt text][image10]
 
 ### Design and Test a Model Architecture
 
