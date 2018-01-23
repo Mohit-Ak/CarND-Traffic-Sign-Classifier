@@ -1,5 +1,4 @@
 # **Traffic Sign Recognition | Writeup | Mohit Arvind Khakharia** 
----
 
 The goals / steps of this project are the following:
 * Load the data set (see below for links to the project data set)
@@ -30,9 +29,6 @@ The goals / steps of this project are the following:
 
 [project code](https://github.com/Mohit-Ak/CarND-Traffic-Sign-Classifier/blob/master/Traffic_Sign_Classifier.ipynb)
 
-### Project HTML
-
-[project html](https://github.com/Mohit-Ak/CarND-Traffic-Sign-Classifier/blob/master/Traffic_Sign_Classifier.html)
 
 ### Data Set Summary & Exploration
 
@@ -62,9 +58,19 @@ Shape - 126302 x 32 x 3
 ```
 43
 ```
+
+### Problem Aspects considered
+
+- How to avoid over or underfitting?
+- Are techniques like normalization, rgb to grayscale, shuffling needed
+- Number of examples per label (some have more than others).
+- Should we generate fake data / augmentation.
+The decisions taken are described below.
+
 ## Data Augmentation
 
 As mentioned in the lecutre, it is always a good practice to augment the data before training inorder to achieve translationaly, rotational and brightness invariance.
+
 ### Trasnformations Applied
 - Rotation
 - Shear
@@ -74,13 +80,11 @@ As mentioned in the lecutre, it is always a good practice to augment the data be
  - ```Training Data new size = 69598 | Approximately 2x```
  - ```Validation Data new size = 17640 | Approximately 1.5x```
  
-#### 2. Visualization of the dataset.
-
-Here is an exploratory visualization of the data set
+### Visualization of the Augmented dataset.
 
 ![alt text][image9]
 
-### Statistical Analysis of the Class frequency
+### Statistical Analysis of the Class frequency in the Augmented data
 - Tells us if we have enough samples of all the classes
 - Tells us if our training data is not biased
 - Tells us that if we cover all the classes in the Validation set
@@ -88,27 +92,31 @@ Here is an exploratory visualization of the data set
 
 ![alt text][image10]
 
-### Design and Test a Model Architecture
+## Model Architecture
+- The architecture implemented was a modified version of LeNet-5 shown in the  [classroom](https://classroom.udacity.com/nanodegrees/nd013/parts/fbf77062-5703-404e-b60c-95b78b2f3f9e/modules/6df7ae49-c61c-4bb2-a23e-6527e69209ec/lessons/601ae704-1035-4287-8b11-e2c2716217ad/concepts/d4aca031-508f-4e0b-b493-e7b706120f81).
 
-#### 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
+### Preprocessing the augmented dataset
 
-As a first step, I decided to convert the images to grayscale because ...
+- Normalized the data has mean zero and equal variance by using the following formula - `(pixel - 128)/ 128`
+- Converted to grayscale by averaging the channels.
+- Shuffled the data for preventing a biased learning curve when using batch based Gradient algorithms as they assume the batch is an approximation of the entire dataset.
 
-Here is an example of a traffic sign image before and after grayscaling.
+```
+Training Data Shape - Before Preprocessing
+(69598, 32, 32, 3)
+Training Data Shape - After Preprocessing
+(69598, 32, 32, 1)
+Validation Data Shape - Before Preprocessing
+(17640, 32, 32, 3)
+Validation Data Shape - After Preprocessing
+(17640, 32, 32, 1)
+Testing Data Shape - Before Preprocessing
+(12630, 32, 32, 1)
+Testing Data Shape - After Preprocessing
+(12630, 32, 32, 3)
+```
 
-![alt text][image2]
-
-As a last step, I normalized the image data because ...
-
-I decided to generate additional data because ... 
-
-To add more data to the the data set, I used the following techniques because ... 
-
-Here is an example of an original image and an augmented image:
-
-![alt text][image3]
-
-The difference between the original data set and the augmented data set is the following ... 
+![alt text][image11]
 
 
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
