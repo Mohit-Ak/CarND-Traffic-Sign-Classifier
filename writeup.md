@@ -28,8 +28,7 @@ The goals / steps of this project are the following:
 ---
 ### Project Code
 
-[project code](https://github.com/Mohit-Ak/CarND-Traffic-Sign-Classifier/blob/master/Traffic_Sign_Classifier.ipynb)
-
+[https://github.com/Mohit-Ak/CarND-Traffic-Sign-Classifier/blob/master/Traffic_Sign_Classifier.ipynb](https://github.com/Mohit-Ak/CarND-Traffic-Sign-Classifier/blob/master/Traffic_Sign_Classifier.ipynb)
 
 ### Data Set Summary & Exploration
 
@@ -159,6 +158,7 @@ Custom Modified Architecture:
 *AdamOptimizer*
 - This works really well because this method computes individual adaptive learning rates for different parameters from estimates of first and second moments of the gradients.
 - Empirical results demonstrate that Adam works well in practice and compares favorably to other stochastic optimization methods.
+
 ![alt text][image13]
 
 ### Fancy Stuff experimented
@@ -171,13 +171,7 @@ Custom Modified Architecture:
 | Dataset        	|     Accuracy        					| 
 |:---------------------:|:---------------------------------------------:| 
 | Validation         			| 94.2%   									| 
-| Test    				|92.7% 										|
-
-
-Note - A little higher validation set accuracy was found at Epoch 84 but gave the same test set accuracy.
-Accuracy | Validation Dataset
-Epoch : 84
-Accuracy : 94.6%
+| Test    				|93.1% 										|
 
 
 ### Model on Custom Images
@@ -212,19 +206,41 @@ Gray scaled image array shape - (5, 32, 32, 1)
 ![alt text][image7]
 
 ### RESULTS FOR CUSTOM IMAGES
-- The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%.
-### Reason for misclassification of the "Stop" sign image
-- The model needs additional training data for the "Stop" image.
-- The Stop sign was the third guess instead of being the first.
-- The model failed to recognize a zoomed inrepresntation and therefore the new samples must be subjected to zoom augmentation.
+- The model was able to correctly guess 5 of the 5 traffic signs, which gives an accuracy of 100%.
+```
+Image -  0
+Guess 1 Probability-  0.976936
+Guess 2 Probability-  0.0121746
+Guess 3 Probability-  0.0108897
+Image -  1
+Guess 1 Probability-  1.0
+Guess 2 Probability-  7.67467e-13
+Guess 3 Probability-  4.498e-26
+Image -  2
+Guess 1 Probability-  1.0
+Guess 2 Probability-  1.82335e-18
+Guess 3 Probability-  2.00922e-22
+Image -  3
+Guess 1 Probability-  1.0
+Guess 2 Probability-  0.0
+Guess 3 Probability-  0.0
+Image -  4
+Guess 1 Probability-  1.0
+Guess 2 Probability-  2.11481e-07
+Guess 3 Probability-  1.78538e-11
+
+```
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| 99.8         			| General Caution   									| 
+| 98         			| General Caution   									| 
 | 99.9     				| Speed Limit 30 										|
 | 99.8					| Keep Right											|
 | 99.9	      			| Yield					 				|
-| 98				    | Stop (Misclassified)      							|
+| 99.9				    | Stop (Misclassified)      							|
 
-For the other images it is a really good sign that it has more than 99% confidence of classifying the same.
+### Future Improvements
+- The model needs additional training data for a few classes so that the learning is not biased.
+- The model failed to recognize in a few cases were the images were zoomed and thus we need to add zoom augmentated data.
+- Need to integrate TensorFlow summaries for detailed debugging and analysis.
 
