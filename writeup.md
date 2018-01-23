@@ -1,9 +1,6 @@
 # **Traffic Sign Recognition** 
 
 ## Writeup
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
 ---
 
 **Build a Traffic Sign Recognition Project**
@@ -19,43 +16,62 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/visualization.jpg "Visualization"
-[image2]: ./examples/grayscale.jpg "Grayscaling"
-[image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
-
-## Rubric Points
-### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
+[image1]: ./custom_pics/1.png "Traffic Sign 1"
+[image2]: ./custom_pics/2.png "Traffic Sign 2"
+[image3]: ./custom_pics/3.png "Traffic Sign 3"
+[image4]: ./custom_pics/4.png "Traffic Sign 4"
+[image5]: ./custom_pics/5.png "Traffic Sign 5"
+[image6]: ./custom_pics/5.png "Traffic Sign 5"
+[image7]: ./images_for_writeup/custom_image_processing.png"Custom_image_processing"
+[image8]: ./images_for_writeup/custom_images.png "Custom_images"
+[image9]: ./images_for_writeup/dataset_augmented.png "Dataset_augmented"
+[image10]: ./images_for_writeup/frequency_analysis.png "Frequency_analysis"
+[image11]: ./images_for_writeup/grayscale_conversion.png "Grayscale_conversion"
+[image12]: ./images_for_writeup/Lenet.png "Lenet"
 
 ---
-### Writeup / README
+### Project Code
 
-#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
+[project code](https://github.com/Mohit-Ak/CarND-Traffic-Sign-Classifier/blob/master/Traffic_Sign_Classifier.ipynb)
 
-You're reading it! and here is a link to my [project code](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
+### Project HTML
+
+[project html](https://github.com/Mohit-Ak/CarND-Traffic-Sign-Classifier/blob/master/Traffic_Sign_Classifier.html)
 
 ### Data Set Summary & Exploration
 
-#### 1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
-
-I used the pandas library to calculate summary statistics of the traffic
-signs data set:
-
+### Before Augmentation
 * The size of training set is ?
+```
+Size - 34799 Samples
+Shape - 
+X_train shape: (34799, 32, 32, 3)
+y_train shape: (34799,)
+ ```
 * The size of the validation set is ?
+```
+Size - 4410 Samples
+X_valid shape: (4410, 32, 32, 3)
+y_valid shape: (4410,)
+```
 * The size of test set is ?
+```
+Size - 12630 Samples
+X_test shape: (12630, 32, 32, 3)
+y_test shape: (12630,)
+```
+
 * The shape of a traffic sign image is ?
+``` 32 x 32
+```
 * The number of unique classes/labels in the data set is ?
+```43```
 
 #### 2. Include an exploratory visualization of the dataset.
 
 Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
 
-![alt text][image1]
+![alt text][`]
 
 ### Design and Test a Model Architecture
 
