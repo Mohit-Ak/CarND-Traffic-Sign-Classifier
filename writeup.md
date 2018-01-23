@@ -118,20 +118,30 @@ Testing Data Shape - After Preprocessing
 
 ![alt text][image11]
 
+### REASON
+- Converting to grayscale -It helped to reduce training time and makes detection color agnostic.
+- Normalizing the data to the range (-1,1) - As mentioned in the classes, a wider distribution in the data would make it more difficult to train using a singlar learning rate. Also, the math becomes difficult at extremely large [or] extremenly small numbers.
 
-#### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
+#### Original LeNet Model Architecture
+![alt text][image12]
 
-My final model consisted of the following layers:
+The architecture I used was a modified version of LeNet as it already did a preety good job of classifying images and need a few tweaks to get exceptional performance.
+
+Custom Modified Architecture:
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Input         		| 32x32x3 RGB image   							| 
-| Convolution 3x3     	| 1x1 stride, same padding, outputs 32x32x64 	|
-| RELU					|												|
-| Max pooling	      	| 2x2 stride,  outputs 16x16x64 				|
-| Convolution 3x3	    | etc.      									|
-| Fully connected		| etc.        									|
-| Softmax				| etc.        									|
+| Input         		| 32x32x1 Grayscale image   							| 
+| Convolution 5x5     	| 1x1 stride, same padding, outputs 28x28x6 	|
+| RELU					|												| outputs 28x28x6
+| Max pooling	      	| 1 2 2 1 stride,  outputs 14x14x6 				|
+| Convolution 5x5	    | outputs 10x10x16     									|
+| RELU					|												| outputs 10x10x16  
+| Max pooling	      	| 1 2 2 1 stride,  outputs 5x5x16  				|
+| Flattening	      	| output 400  				|
+| Fully connected		| output 200        									|
+| Fully connected		| output 100        									|
+| Softmax				| Result output 43        									|
 |						|												|
 |						|												|
  
