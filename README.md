@@ -33,7 +33,7 @@ jupyter notebook Traffic_Sign_Classifier.ipynb
 | Dataset        	|     Accuracy        					| 
 |:---------------------:|:---------------------------------------------:| 
 | Validation         			| 94.2%   									| 
-| Test    				|92.7% 										|
+| Test    				|93.1% 										|
 
 ### AUTHOR
  [Mohit Arvind Khakharia](http://mohit.pro)
