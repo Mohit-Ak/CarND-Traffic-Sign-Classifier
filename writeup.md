@@ -1,12 +1,4 @@
-# **Traffic Sign Recognition** 
-
-## Writeup
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
-
----
-
-**Build a Traffic Sign Recognition Project**
+# **Traffic Sign Recognition | Writeup | Mohit Arvind Khakharia** 
 
 The goals / steps of this project are the following:
 * Load the data set (see below for links to the project data set)
@@ -19,80 +11,137 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/visualization.jpg "Visualization"
-[image2]: ./examples/grayscale.jpg "Grayscaling"
-[image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
-
-## Rubric Points
-### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
+[image1]: ./custom_pics/1.png "Traffic Sign 1"
+[image2]: ./custom_pics/2.png "Traffic Sign 2"
+[image3]: ./custom_pics/3.png "Traffic Sign 3"
+[image4]: ./custom_pics/4.png "Traffic Sign 4"
+[image5]: ./custom_pics/5.png "Traffic Sign 5"
+[image6]: ./custom_pics/5.png "Traffic Sign 5"
+[image7]: ./images_for_writeup/custom_image_processing.png"Custom_image_processing"
+[image8]: ./images_for_writeup/custom_images.png "Custom_images"
+[image9]: ./images_for_writeup/dataset_augmented.png "Dataset_augmented"
+[image10]: ./images_for_writeup/frequency_analysis.png "Frequency_analysis"
+[image11]: ./images_for_writeup/grayscale_conversion.png "Grayscale_conversion"
+[image12]: ./images_for_writeup/Lenet.png "Lenet"
 
 ---
-### Writeup / README
+### Project Code
 
-#### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
+[project code](https://github.com/Mohit-Ak/CarND-Traffic-Sign-Classifier/blob/master/Traffic_Sign_Classifier.ipynb)
 
-You're reading it! and here is a link to my [project code](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
 
 ### Data Set Summary & Exploration
 
-#### 1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
+### Before Augmentation
+* Size and shape of the training set
+```
+Size - 34799 Samples
+Shape - 34799 x 32 x 32 x 3
 
-I used the pandas library to calculate summary statistics of the traffic
-signs data set:
+ ```
+* Size and shape of the Vlidation set
+```
+Size - 4410 Samples
+Shape - 4410 x 32 x 32 x 3
+```
+* Size and shape of the test set
+```
+Size - 12630 Samples
+Shape - 126302 x 32 x 3
+```
 
-* The size of training set is ?
-* The size of the validation set is ?
-* The size of test set is ?
-* The shape of a traffic sign image is ?
-* The number of unique classes/labels in the data set is ?
+* Shape of a Traffic Sign image
+``` 
+32 x 32
+```
+* Unique Classes/Labels in the data set
+```
+43
+```
 
-#### 2. Include an exploratory visualization of the dataset.
+### Problem Aspects considered
 
-Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
+- How to avoid over or underfitting?
+- Are techniques like normalization, rgb to grayscale, shuffling needed
+- Number of examples per label (some have more than others).
+- Should we generate fake data / augmentation.
+The decisions taken are described below.
 
-![alt text][image1]
+## Data Augmentation
 
-### Design and Test a Model Architecture
+As mentioned in the lecutre, it is always a good practice to augment the data before training inorder to achieve translationaly, rotational and brightness invariance.
 
-#### 1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
+### Trasnformations Applied
+- Rotation
+- Shear
+- Zoom
+- Translation
+### Dataset size increase
+ - ```Training Data new size = 69598 | Approximately 2x```
+ - ```Validation Data new size = 17640 | Approximately 1.5x```
+ 
+### Visualization of the Augmented dataset.
 
-As a first step, I decided to convert the images to grayscale because ...
+![alt text][image9]
 
-Here is an example of a traffic sign image before and after grayscaling.
+### Statistical Analysis of the Class frequency in the Augmented data
+- Tells us if we have enough samples of all the classes
+- Tells us if our training data is not biased
+- Tells us that if we cover all the classes in the Validation set
+- Tells us if we test all the classes in the Test set
 
-![alt text][image2]
+![alt text][image10]
 
-As a last step, I normalized the image data because ...
+## Model Architecture
+- The architecture implemented was a modified version of LeNet-5 shown in the  [classroom](https://classroom.udacity.com/nanodegrees/nd013/parts/fbf77062-5703-404e-b60c-95b78b2f3f9e/modules/6df7ae49-c61c-4bb2-a23e-6527e69209ec/lessons/601ae704-1035-4287-8b11-e2c2716217ad/concepts/d4aca031-508f-4e0b-b493-e7b706120f81).
 
-I decided to generate additional data because ... 
+### Preprocessing the augmented dataset
 
-To add more data to the the data set, I used the following techniques because ... 
+- Normalized the data has mean zero and equal variance by using the following formula - `(pixel - 128)/ 128`
+- Converted to grayscale by averaging the channels.
+- Shuffled the data for preventing a biased learning curve when using batch based Gradient algorithms as they assume the batch is an approximation of the entire dataset.
 
-Here is an example of an original image and an augmented image:
+```
+Training Data Shape - Before Preprocessing
+(69598, 32, 32, 3)
+Training Data Shape - After Preprocessing
+(69598, 32, 32, 1)
+Validation Data Shape - Before Preprocessing
+(17640, 32, 32, 3)
+Validation Data Shape - After Preprocessing
+(17640, 32, 32, 1)
+Testing Data Shape - Before Preprocessing
+(12630, 32, 32, 1)
+Testing Data Shape - After Preprocessing
+(12630, 32, 32, 3)
+```
 
-![alt text][image3]
+![alt text][image11]
 
-The difference between the original data set and the augmented data set is the following ... 
+### REASON
+- Converting to grayscale -It helped to reduce training time and makes detection color agnostic.
+- Normalizing the data to the range (-1,1) - As mentioned in the classes, a wider distribution in the data would make it more difficult to train using a singlar learning rate. Also, the math becomes difficult at extremely large [or] extremenly small numbers.
 
+#### Original LeNet Model Architecture
+![alt text][image12]
 
-#### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
+The architecture I used was a modified version of LeNet as it already did a preety good job of classifying images and need a few tweaks to get exceptional performance.
 
-My final model consisted of the following layers:
+Custom Modified Architecture:
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Input         		| 32x32x3 RGB image   							| 
-| Convolution 3x3     	| 1x1 stride, same padding, outputs 32x32x64 	|
-| RELU					|												|
-| Max pooling	      	| 2x2 stride,  outputs 16x16x64 				|
-| Convolution 3x3	    | etc.      									|
-| Fully connected		| etc.        									|
-| Softmax				| etc.        									|
+| Input         		| 32x32x1 Grayscale image   							| 
+| Convolution 5x5     	| 1x1 stride, same padding, outputs 28x28x6 	|
+| RELU					|												| outputs 28x28x6
+| Max pooling	      	| 1 2 2 1 stride,  outputs 14x14x6 				|
+| Convolution 5x5	    | outputs 10x10x16     									|
+| RELU					|												| outputs 10x10x16  
+| Max pooling	      	| 1 2 2 1 stride,  outputs 5x5x16  				|
+| Flattening	      	| output 400  				|
+| Fully connected		| output 200        									|
+| Fully connected		| output 100        									|
+| Softmax				| Result output 43        									|
 |						|												|
 |						|												|
  
