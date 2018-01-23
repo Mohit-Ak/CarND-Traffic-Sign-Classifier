@@ -17,7 +17,7 @@ The goals / steps of this project are the following:
 [image4]: ./custom_pics/4.png "Traffic Sign 4"
 [image5]: ./custom_pics/5.png "Traffic Sign 5"
 [image6]: ./custom_pics/5.png "Traffic Sign 5"
-[image7]: ./images_for_writeup/custom_image_processing.png"Custom_image_processing"
+[image7]: ./images_for_writeup/custom_image_processing.png "Custom_image_processing"
 [image8]: ./images_for_writeup/custom_images.png "Custom_images"
 [image9]: ./images_for_writeup/dataset_augmented.png "Dataset_augmented"
 [image10]: ./images_for_writeup/frequency_analysis.png "Frequency_analysis"
@@ -209,7 +209,7 @@ Gray scaled image array shape - (5, 32, 32, 1)
 - The tf.nn.top_k was used fpr predicting the top 3 guesses for each image.
 - Please find the proability of each guess mentioned on the image label
 
-![alt text][image8]
+![alt text][image7]
 
 ### RESULTS FOR CUSTOM IMAGES
 - The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%.
