@@ -1,9 +1,5 @@
-# **Traffic Sign Recognition** 
-
-## Writeup
+# **Traffic Sign Recognition | Writeup** 
 ---
-
-**Build a Traffic Sign Recognition Project**
 
 The goals / steps of this project are the following:
 * Load the data set (see below for links to the project data set)
@@ -44,34 +40,50 @@ The goals / steps of this project are the following:
 * The size of training set is ?
 ```
 Size - 34799 Samples
-Shape - 
+Shape 
 X_train shape: (34799, 32, 32, 3)
 y_train shape: (34799,)
  ```
 * The size of the validation set is ?
 ```
 Size - 4410 Samples
+Shape
 X_valid shape: (4410, 32, 32, 3)
 y_valid shape: (4410,)
 ```
 * The size of test set is ?
 ```
 Size - 12630 Samples
+Shape
 X_test shape: (12630, 32, 32, 3)
 y_test shape: (12630,)
 ```
 
 * The shape of a traffic sign image is ?
-``` 32 x 32
+``` 
+32 x 32
 ```
 * The number of unique classes/labels in the data set is ?
-```43```
+```
+43
+```
+## Data Augmentation
 
-#### 2. Include an exploratory visualization of the dataset.
+As mentioned in the lecutre, it is always a good practice to augment the data before training inorder to achieve translationaly, rotational and brightness invariance.
+### Trasnformations Applied
+- Rotation
+- Shear
+- Zoom
+- Translation
+### Dataset size increase
+ - ```Training Data new size = 69598 | Approximately 2x```
+ - ```Validation Data new size = 17640 | Approximately 1.5x```
+ 
+#### 2. Visualization of the dataset.
 
-Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
+Here is an exploratory visualization of the data set
 
-![alt text][`]
+![alt text][image9]
 
 ### Design and Test a Model Architecture
 
